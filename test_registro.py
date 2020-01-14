@@ -43,7 +43,7 @@ class TesteDeRegistroFIEF(unittest.TestCase):
         Select(driver.find_element_by_name(elemento)).select_by_value("SE")
         self.checa_se_passou()
 
-    #O cadastro de todos os cursos estão funcionando corretamente
+    #Assegura que o cadastro de todos os cursos estão funcionando corretamente
     def test_registro_primeira_pagina(self):    
         for i in range (len(var.valores_curso_parcial)):
             self.insere_valores_pagina_1(var.valores_curso_parcial[i])
@@ -74,7 +74,7 @@ class TesteDeRegistroFIEF(unittest.TestCase):
             self.driver.quit()
 
 
-    #O cadastro a partir de todas as UFs estão funcionando corretamente
+    #Assegura que o cadastro a partir de todas as UFs estão funcionando corretamente
     def test_segunda_pagina_uf(self):
         for i in range(len(var.valores_uf_parcial)):
             try:
