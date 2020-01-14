@@ -42,11 +42,15 @@ class TesteDeRegistroFIEF(unittest.TestCase):
         driver = self.driver
         Select(driver.find_element_by_name(elemento)).select_by_value("SE")
         self.checa_se_passou()
+    
+    def clica_botoes(self):
+        self.driver.find_element_by_name(var.botoes[0]).click()
+        self.driver.find_element_by_id(var.botoes[1]).click()
 
     #Assegura que o cadastro de todos os cursos estão funcionando corretamente
     def test_registro_primeira_pagina(self):    
         for i in range (len(var.valores_curso_parcial)):
-            self.insere_valores_pagina_1(var.valores_curso_parcial[i])
+            self.insere_valores_pagina_1(var.valores_curso_total[i])
             try:
                 self.driver.find_element_by_name("ctl00$ContentPlaceHolder1$pageControl$txtNome")
             except NoSuchElementException:
@@ -63,8 +67,7 @@ class TesteDeRegistroFIEF(unittest.TestCase):
             self.insere_dados_texto(var.elementos_pagina_2[i], var.chaves_pagina_2[i])
         for i in range (len(var.selecionaveis_pagina_2)):
             self.insere_dados_select(var.selecionaveis_pagina_2[i])
-        self.driver.find_element_by_name("ctl00$ContentPlaceHolder1$pageControl$rdbSexo").click()
-        self.driver.find_element_by_id("ctl00_ContentPlaceHolder1_pageControl_ASPxButton1_CD").click()
+        self.clica_botoes()
         try:
             self.driver.find_element_by_name("ctl00$ContentPlaceHolder1$pageControl$rdbList")
         except NoSuchElementException:
@@ -76,14 +79,13 @@ class TesteDeRegistroFIEF(unittest.TestCase):
 
     #Assegura que o cadastro a partir de todas as UFs estão funcionando corretamente
     def test_segunda_pagina_uf(self):
-        for i in range(len(var.valores_uf_parcial)):
+        for i in range(len(var.valores_uf)):
             try:
                 self.insere_valores_pagina_1()
                 self.insere_valores_pagina_2()
                 Select(self.driver.find_element_by_name("ctl00$ContentPlaceHolder1$pageControl$ufsRG")).select_by_value("SE")
-                Select(self.driver.find_element_by_name("ctl00$ContentPlaceHolder1$pageControl$ufsPessoal")).select_by_value(var.valores_uf_parcial[i])
-                self.driver.find_element_by_name("ctl00$ContentPlaceHolder1$pageControl$rdbSexo").click()
-                self.driver.find_element_by_id("ctl00_ContentPlaceHolder1_pageControl_ASPxButton1_CD").click()
+                Select(self.driver.find_element_by_name("ctl00$ContentPlaceHolder1$pageControl$ufsPessoal")).select_by_value(var.valores_uf[i])
+                self.clica_botoes()
                 self.driver.find_element_by_name("ctl00$ContentPlaceHolder1$pageControl$rdbList")
             except NoSuchElementException:
                 self.fail()
