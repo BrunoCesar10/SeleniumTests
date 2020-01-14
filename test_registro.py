@@ -15,7 +15,7 @@ class TesteDeRegistroFIEF(unittest.TestCase):
         driver.get(var.url_pagina)
         elemento = driver.find_element_by_name("ctl00$ContentPlaceHolder1$pageControl$txtCPF")
         elemento.clear()
-        elemento.send_keys("01483743527")
+        elemento.send_keys(var.cpf_valido)
         action = ActionChains(driver)
         action.move_to_element_with_offset(elemento, 300, 300)
         action.click()
