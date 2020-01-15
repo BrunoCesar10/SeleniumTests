@@ -50,7 +50,7 @@ class TesteDeRegistroFIEF(unittest.TestCase):
     #Assegura que o cadastro de todos os cursos estão funcionando corretamente
     def test_registro_primeira_pagina(self):    
         for i in range (len(var.valores_curso_parcial)):
-            self.insere_valores_pagina_1(var.valores_curso_total[i])
+            self.insere_valores_pagina_1(var.valores_curso_parcial[i])
             try:
                 self.driver.find_element_by_name("ctl00$ContentPlaceHolder1$pageControl$txtNome")
             except NoSuchElementException:
@@ -79,12 +79,12 @@ class TesteDeRegistroFIEF(unittest.TestCase):
 
     #Assegura que o cadastro a partir de todas as UFs estão funcionando corretamente
     def test_segunda_pagina_uf(self):
-        for i in range(len(var.valores_uf)):
+        for i in range(len(var.valores_uf_parcial)):
             try:
                 self.insere_valores_pagina_1()
                 self.insere_valores_pagina_2()
                 Select(self.driver.find_element_by_name("ctl00$ContentPlaceHolder1$pageControl$ufsRG")).select_by_value("SE")
-                Select(self.driver.find_element_by_name("ctl00$ContentPlaceHolder1$pageControl$ufsPessoal")).select_by_value(var.valores_uf[i])
+                Select(self.driver.find_element_by_name("ctl00$ContentPlaceHolder1$pageControl$ufsPessoal")).select_by_value(var.valores_uf_parcial[i])
                 self.clica_botoes()
                 self.driver.find_element_by_name("ctl00$ContentPlaceHolder1$pageControl$rdbList")
             except NoSuchElementException:
