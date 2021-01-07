@@ -1,3 +1,3 @@
 # SeleniumTests
-Utilizando a bibliotec Selenium do python para automatizar testes de aplicações Web
+Utilizando a biblioteca Selenium do python para automatizar testes de aplicações Web
 
